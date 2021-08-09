@@ -5,5 +5,8 @@ module.exports = withPWA({
 		dest: 'public',
 		register: true,
 		skipWaiting: true
+	},
+	images: {
+		domains: ['medium.com', 'cdn-images-1.medium.com'],
 	}
 });

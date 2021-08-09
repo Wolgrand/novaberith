@@ -28,7 +28,7 @@ export default function Home() {
         link: post.link,
         title: post.title,
         thumbnail: post.thumbnail,
-        content: parse(post.content.split('</p>')[1])
+        content: parse(post.content.split('</p>')[1].substring(0,200)+'...')
       };
     })
     /* return players.sort((a,b) => (a.name > b.name) ? 1 : -1); */
@@ -134,7 +134,7 @@ export default function Home() {
           {data && data.map((post:Post, index:number)=>(
             <div key={index} className="p-4 md:w-1/3">
               <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                <img className="lg:h-48 md:h-36 w-full object-cover object-center" src={post.thumbnail} alt={post.title} />
+                <Image className="lg:h-48 md:h-36 w-full object-cover object-center" src={post.thumbnail} alt={post.title} height={150} width={300} />
                 <div className="p-6">
                   <h1 className="title-font text-lg font-medium text-yellow-800 mb-3">{post.title}</h1>
                   <p className="leading-relaxed mb-3">{post.content}</p>
