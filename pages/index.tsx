@@ -6,6 +6,8 @@ import { useQuery, QueryClient, QueryClientProvider  } from "react-query";
 import { RiInstagramLine, RiFacebookBoxLine, RiYoutubeLine, RiHeart3Fill } from "react-icons/ri";
 import styles from '../styles/Home.module.css'
 import api from '../utils/api'
+import Card from '../components/Card'
+import MusicCards from '../components/MusicCards'
 import logo from '../public/images/logo.png'
 import cdPetalas from '../public/images/cd-petalas.jpg'
 import cdPequenoAto from '../public/images/cd-pequenoato.jpg'
@@ -68,13 +70,13 @@ export default function Home() {
                 </div>
 
                 <div className="pl-2 flex flex-row justify-center">
-                    <a className="relative m-1 text-yellow-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="#instagram">
+                    <a className="relative m-1 text-yellow-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="https://www.instagram.com/novaberith/">
                       <RiInstagramLine size="24" />
                     </a>
                     <a className="relative m-1 text-yellow-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="#facebook">
                       <RiFacebookBoxLine size="24" />
                     </a>
-                    <a className="relative m-1 text-yellow-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="#youtube">
+                    <a className="relative m-1 text-yellow-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" href="https://www.youtube.com/c/comunidadenovaberith">
                       <RiYoutubeLine size="24" />
                     </a>
                 </div>
@@ -83,7 +85,7 @@ export default function Home() {
     </header>
     <section id='video-area' className="relative flex items-center justify-center mb-12 overflow-hidden bg-black text-white bg-opacity-50">
       <div
-        className="relative z-30 text-center  md:my-56  font-sans font font-bold  text-white  w-full h-full text "
+        className="relative z-30 text-center  md:py-44  font-sans font font-bold  text-white bg-black bg-opacity-50 w-full h-full"
       >
         {/* <h1 className="text-red-500" style={{textShadow: '', fontSize: '75px'}}>
           Nova Berith
@@ -109,14 +111,15 @@ export default function Home() {
         </h3>
         
       </div>
+      <div className='absolute bg-black w-full'>
         <video
           autoPlay
           loop
           muted
           
-          style={{filter: " blur(10px)" }}
+          style={{filter: " " }}
           
-          className="absolute z-10 w-auto min-w-full min-h-full max-w-none h-auto bg-black text-white bg-opacity-50"
+          className="z-10 w-auto min-w-full min-h-full max-w-none h-auto bg-black text-white bg-opacity-50"
         >
           <source
             src="/video/novaberith.mp4"
@@ -124,6 +127,7 @@ export default function Home() {
           />
           Your browser does not support the video tag.
         </video>
+      </div>
     </section>
     <section id="blog" className="px-32 text-gray-600 body-font">
       <h1 className="flex text-center text-4xl title-font font-medium text-yellow-800">
@@ -134,7 +138,9 @@ export default function Home() {
           {data && data.map((post:Post, index:number)=>(
             <div key={index} className="p-4 md:w-1/3">
               <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                <Image className="lg:h-48 md:h-36 w-full object-cover object-center" src={post.thumbnail} alt={post.title} height={150} width={300} />
+                <div className='relative h-28'>
+                  <Image className="lg:h-48 md:h-36 w-full object-cover object-center" src={post.thumbnail} alt={post.title} layout='fill' />
+                </div>
                 <div className="p-6">
                   <h1 className="title-font text-lg font-medium text-yellow-800 mb-3">{post.title}</h1>
                   <p className="leading-relaxed mb-3">{post.content}</p>
@@ -183,54 +189,14 @@ export default function Home() {
         </div>
       </div>
     </section>
-    <section
-      style={{backgroundImage: 'url("/images/bg-meusol.jpg")'}}
-      className="bg-fixed h-36 bg-cover bg-center p-4 text-center align-middle"
-       
-    >
-      <div className="p-5 text-4xl text-white text-center align-middle">
-      | Música
+        
+    <section id='musica' className='px-32 text-justify  flex justify-center flex-col'>
+      <h1 className="my-6 flex text-center text-4xl title-font font-medium text-yellow-800">
+        | Música
+      </h1>
+      <div className='flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 xl:-mx-2 justify-center'>
+        <MusicCards  link='https://open.spotify.com/album/2xVQJJ4uKSv7vGXpVXIUdr' />
       </div>
-    </section>
-    <section
-      id="musica"
-      
-      className="bg-gray-200 z-0 container flex flex-col items-center justify-center h-1/4 m-auto mb-12 bg-fixed bg-center bg-cover"
-    >
-      <section className="text-gray-200 body-font z-10 ">
-        <div className="container px-5 py-16 mx-auto">
-          <div className="flex flex-wrap -m-4 ">
-            <div className="p-4 lg:w-1/4 drop-shadow-sm ">
-              <div className="h-full     pb-24 rounded-lg overflow-hidden text-center relative">
-                <h1 className="title-font sm:text-2xl text-xl font-light text-gray-700 mb-3">Pétalas</h1>
-                <Image className="cursor-pointer" src={cdPetalas} alt="Nova Berith logotipo"  width={400} height={400}  />              
-                <a href="https://open.spotify.com/album/2xVQJJ4uKSv7vGXpVXIUdr" className="inline-block hover:bg-gray-400 bg-gray-500 rounded-sm w-full">Ouvir</a> 
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/4 ">
-              <div className="h-full     pb-24 rounded-lg overflow-hidden text-center relative">        
-                <h1 className="title-font sm:text-2xl text-xl font-light text-gray-700 mb-3">Pequeno Ato de Amor</h1>
-                <Image src={cdPequenoAto} alt="Nova Berith logotipo"  width={400} height={400}  />
-                <a href="https://open.spotify.com/album/2xVQJJ4uKSv7vGXpVXIUdr" className="inline-block hover:bg-gray-400 bg-gray-500 rounded-sm w-full">Ouvir</a> 
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/4">
-              <div className="h-full     pb-24 rounded-lg overflow-hidden text-center relative">
-                <h1 className="title-font sm:text-2xl text-xl font-light text-gray-700 mb-3">Infinito Amor</h1>
-                <Image src={cdVinde} alt="Nova Berith logotipo"  width={400} height={400}  /> 
-                <a href="https://open.spotify.com/album/2xVQJJ4uKSv7vGXpVXIUdr" className="inline-block hover:bg-gray-400 bg-gray-500 rounded-sm w-full">Ouvir</a> 
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/4">
-              <div className="h-full     pb-24 rounded-lg overflow-hidden text-center relative">
-                <h1 className="title-font sm:text-2xl text-xl font-light text-gray-700 mb-3">Vinde</h1>
-                <Image src={cdInfinitoAmor} alt="Nova Berith logotipo"  width={400} height={400}  /> 
-                <a href="https://open.spotify.com/album/2xVQJJ4uKSv7vGXpVXIUdr" className="inline-block hover:bg-gray-400 bg-gray-500 rounded-sm w-full">Ouvir</a> 
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </section>
     <section id="artes">
 

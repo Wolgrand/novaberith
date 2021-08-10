@@ -7,6 +7,6 @@ module.exports = withPWA({
 		skipWaiting: true
 	},
 	images: {
-		domains: ['medium.com', 'cdn-images-1.medium.com'],
+		domains: ['medium.com', 'cdn-images-1.medium.com', 'i.scdn.co'],
 	}
 });
